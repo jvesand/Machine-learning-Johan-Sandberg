@@ -3,7 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from sklearn import svm
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 
+def evaluate_classification(y_test, y_pred, labels = []):
+    print(classification_report(y_test, y_pred))
+    cm = confusion_matrix(y_test, y_pred)
+    ConfusionMatrixDisplay(cm, display_labels=labels).plot()
+
+
+def print_shapes(X_train, X_test, y_train, y_test):
+    print(f"{X_train.shape=}\n{X_test.shape=}\n{y_train.shape=}\n{y_test.shape=}\n")
 
 def train_test_split(X, y, train_fraction=.7, seed=42, replace=False):
     """Splits up X, y to training and testing data
